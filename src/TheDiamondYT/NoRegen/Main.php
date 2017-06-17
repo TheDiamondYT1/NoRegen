@@ -25,20 +25,21 @@ class Main extends PluginBase implements Listener {
     public function onRegainHealth(EntityRegainHealthEvent $ev) {
         $block = $this->getConfig()->getAll()["block"];
         $reason = $ev->getRegainReason();
+        $bypass = $ev->getPlayer()->hasPermission("noregen.bypass");
         
-        if($block["regen"] && $reason === EntityRegainHealthEvent::CAUSE_REGEN) {
+        if($block["regen"] && $reason === EntityRegainHealthEvent::CAUSE_REGEN && !$bypass) {
             $ev->setCancelled(true);
         }
-        if($block["eating"] && $reason === EntityRegainHealthEvent::CAUSE_EATING) {
+        if($block["eating"] && $reason === EntityRegainHealthEvent::CAUSE_EATING && !$bypass) {
             $ev->setCancelled(true);
         }
-        if($block["potion"] && $reason === EntityRegainHealthEvent::CAUSE_MAGIC) {
+        if($block["potion"] && $reason === EntityRegainHealthEvent::CAUSE_MAGIC && !$bypass) {
             $ev->setCancelled(true);
         }
-        if($block["custom"] && $reason === EntityRegainHealthEvent::CAUSE_CUSTOM) {
+        if($block["custom"] && $reason === EntityRegainHealthEvent::CAUSE_CUSTOM && !$bypass) {
             $ev->setCancelled(true);
         }
-        if($block["saturation"] && $reason === EntityRegainHealthEvent::CAUSE_SATURATION) {
+        if($block["saturation"] && $reason === EntityRegainHealthEvent::CAUSE_SATURATION && !$bypass) {
             $ev->setCancelled(true);
         }
     }

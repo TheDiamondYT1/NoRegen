@@ -7,4 +7,4 @@ main: TheDiamondYT\NoRegen\Main
 website: https://github.com/TheDiamondYT1/NoRegen
 permission:
   noregen.bypass:
-    default: true
+    default: op
